@@ -1,0 +1,53 @@
+{
+  "name": "Jade",
+  "version": "1.0.0",
+  "description": "Jade another multi purpose discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "ts-node-dev src/index.ts",
+    "start:prod": "node --experimental-modules dist/index.js",
+    "build": "tsc"
+  },
+  "keywords": [
+    "discord bot",
+    "discord.js",
+    "typescript",
+    "coding",
+    "support",
+    "modmail",
+    "discord"
+  ],
+  "author": "Saige",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/humanize-duration": "^3.27.1",
+    "@types/moment-duration-format": "^2.2.3",
+    "@types/os-utils": "^0.0.1",
+    "body-parser": "^1.20.0",
+    "chalk": "^2.4.1",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "glob": "^7.2.0",
+    "humanize-duration": "^3.27.1",
+    "moment": "^2.29.2",
+    "moment-duration-format": "^2.3.2",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
+    "os-utils": "^0.0.14",
+    "passport": "^0.5.2",
+    "passport-discord": "^0.1.4",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/glob": "^7.2.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^17.0.23",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}

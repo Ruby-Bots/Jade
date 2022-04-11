@@ -1,0 +1,8 @@
+.env
+node_modules
+src/assets/logs
+dist
+.idea
+.DS_Store
+.vscode
+.vscodeignore
