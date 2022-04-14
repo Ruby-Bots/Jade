@@ -25,8 +25,8 @@ const Pagination = async (
   categorys?: Array<CategoryOptions>,
   dropdownPlaceholder?: string,
 ) => {
-  console.log(pages)
-  let dropdown;
+  try {
+    let dropdown;
   if (categorys) {
     dropdown = new MessageActionRow().addComponents([
       new MessageSelectMenu()
@@ -76,15 +76,15 @@ const Pagination = async (
   components.push(buttons);
   interaction
     .reply({
+      ephemeral: true,
       components: components,
       embeds: [firstPage],
     })
-    .catch(() => {});
+    .catch((err) => { console.log(err)});
   let pageOnEnd;
   const collector = interaction.channel.createMessageComponentCollector({
     time: 35000,
   });
-  console.log(currentpages.length);
    let page = 0;
   collector.on("collect", async (i) => {
     if (i.user.id !== interaction.user.id || i.user.bot) return;
@@ -182,6 +182,20 @@ const Pagination = async (
       })
       .catch(() => {});
   });
+  } catch (err) {
+    client.logger.error(err)
+    client.sendCommandError(
+      interaction as ExtendedInteraction,
+      false,
+      `>>> \`\`\err\n${err}\n\`\`\``,
+      false,
+      {
+        token: process.env.DEFAULT_ERROR_WEBHOOK_TOKEN,
+        id: process.env.DEFAULT_ERROR_WEBHOOK_ID,
+      },
+      "Pagination error!"
+    );
+ }
 };
 
 export default Pagination;

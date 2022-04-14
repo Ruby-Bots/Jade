@@ -38,6 +38,7 @@ export type CommandTypes = {
   cooldown?: number;
   usage?: string;
   category: string;
+  owner?: boolean;
   execute: CommandRun;
 } & ChatInputApplicationCommandData;
 
@@ -53,7 +54,7 @@ export type RouteRun = (
   options: RunInterface
 ) => any;
 
-export type APIRouteTypes = {
+export type RouteTypes = {
   name: string;
   middleware?: any[];
   execute: RouteRun;

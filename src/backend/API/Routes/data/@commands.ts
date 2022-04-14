@@ -1,4 +1,4 @@
-import { APIRoute } from "../../structures/Routes";
+import { APIRoute } from "../../../structures/Routes";
 
 export default new APIRoute({
     name: `data/@commands`,

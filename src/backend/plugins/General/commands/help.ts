@@ -24,14 +24,28 @@ export default new Command({
         const commandArray = []
         client.commands.forEach((command) => {
           commandArray.push(command)
-        if (categories.includes(command.category)) return;
-        categories.push(command.category);
+        if (categories.includes(command.category.toLowerCase())) return;
+        categories.push(command.category.toLowerCase());
         });
         const pages = [];
         categories.forEach((cata) => {
           dropdownCategories.push({ label: `${permFormat(cata)}`, value: cata.toLowerCase() })
           const commandAr = [];
-          client.commands.filter(f => f.category === cata).forEach((command) => { commandAr.push(command)})
+          client.commands.filter(f => f.category.toLowerCase() === cata.toLowerCase()).forEach((command) => { 
+            if (command.options) {
+              if (command.options.filter(f => f.type === "SUB_COMMAND").length > 0) {
+                command.options.forEach((op) => {
+                  if (op.type === "SUB_COMMAND") {
+                    commandAr.push({ mainCmd: command.name, ...op });
+                  }
+                });
+              } else {
+                commandAr.push(command);
+              }
+            } else {
+              commandAr.push(command)
+            }
+          })
             const pageNums = 8
             const commandPages = []
             for (let i = 0; i < commandArray.length; i++) {
@@ -41,7 +55,11 @@ export default new Command({
                       .splice(0, pageNums)
                       .map(
                         (command) =>
-                          `[\`/${command.name}\`](${process.env.URL})\n${
+                          `[\`/${
+                            command.mainCmd
+                              ? `${command.mainCmd} ${command.name}`
+                              : command.name
+                          }\`](${process.env.URL})\n${
                             client.config.emojis.reply
                           } ${
                             command.description
@@ -59,7 +77,6 @@ export default new Command({
             
             pages.push({ id: cata, embed: commandPages.filter(f => f.description !== "") });
       });
-   
         Pagination(pages, ctx, client, dropdownCategories, `✨ | Choose a category!`)
       
     } else {
@@ -88,9 +105,13 @@ export default new Command({
                   : "No permissions required!"
               }`,
               footer: {
-                text: `Cooldown: ${Math.round(cooldown.time)} ${
-                  cooldown.type
-                } | Syntax: <required> [optional]`,
+                text: `${
+                  cooldown
+                    ? `Cooldown: ${Math.round(cooldown.time)} ${
+                        cooldown.type
+                      } | `
+                    : ""
+                }Syntax: <required> [optional]`,
               },
             }),
           ],

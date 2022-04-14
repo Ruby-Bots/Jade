@@ -1,7 +1,7 @@
 
-import getGuilds from "../../modules/guilds";
-import { apikey } from "../../modules/middleware/apikey";
-import { APIRoute } from "../../structures/Routes";
+import getGuilds from "../../../modules/guilds";
+import { apikey } from "../../../modules/middleware/apikey";
+import { APIRoute } from "../../../structures/Routes";
 
 export default new APIRoute({
     name: `data/@users`,

@@ -1,7 +1,7 @@
-import { APIRouteTypes } from "../../typings/classTypes";
+import { RouteTypes } from "../../typings/classTypes";
 
 export class APIRoute {
-    constructor(options: APIRouteTypes) {
+    constructor(options: RouteTypes) {
         Object.assign(this, options)
     }
 }

@@ -9,16 +9,16 @@ Jade is once again another mutli purpose bot, allowing you to maintain and manag
 
 # Progression ⏰
 
-- [-] Giveaways
-- [-] Suggestions
+- [x] Suggestions
 - [-] Join Gate
-- [-] API
+- [x] API
 - [-] Fun
-- [-] Moderation ( Backups, Role Mangement, Basic Modeation, Channel Mangement )
+- [x] Starboard
+- [-] Server Stats
+- [-] Moderation ( Role Mangement, Basic Modeation, Channel Mangement )
 - [-] Utility
-- [-] NSFW
-- [-] General
-- [-] Leveling
+- [x] General
+- [x] Leveling
 - [-] Owner
 - [-] Games
 - [-] Image

@@ -1,12 +1,12 @@
-import getGuilds from "../../modules/guilds";
-import { apikey } from "../../modules/middleware/apikey";
-import { APIRoute } from "../../structures/Routes";
+import getGuilds from "../../../modules/guilds";
+import { apikey } from "../../../modules/middleware/apikey";
+import { APIRoute } from "../../../structures/Routes";
 export default new APIRoute({
   name: `data/@me`,
   middleware: [apikey],
   execute: async (req, res, { client }) => {
     const guilds = await getGuilds();
-    if(!client) return res.redirect("/api")
+    if (!client) return res.redirect("/api");
     setTimeout(() => {
       res.send({
         "@me": {

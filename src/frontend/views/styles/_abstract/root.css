@@ -1,0 +1,31 @@
+@import url("https://use.typekit.net/pom8zfo.css");
+:root {
+  --black-dark: #0b090a;
+  --black-dark2: #181818;
+  --black: #212529;
+  --gray: #343a40;
+  --green: #52b788;
+  --green-dark: #40916c;
+  --green-light: #74c69d;
+  --white: #ffffff;
+  --off-white: #f3f3f3;
+  --off-white2: #eeeeee;
+  --header-font: "Degular", sans-serif;
+  --gold: #ffb94b;
+  --purple: #a98aff;
+  --blue: #6fbaff;
+  --red: #fe7d7d;
+  --pink: #ff76d9;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li { list-style-type: none;}

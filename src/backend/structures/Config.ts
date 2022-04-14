@@ -9,6 +9,16 @@ export interface Emojis {
   tick: string;
   cross: string;
 }
+
+export interface Colors {
+  gold: string; //#ffb94b
+  purple: string; //#a98aff
+  blue: string; // #6fbaff
+  red: string; // #fe7d7d
+  pink: string; // #ff76d9
+  blue2: string; // #337fd5
+  green: string; // #52b788
+}
 export interface Links {
   github: string;
   discord: string;
@@ -22,4 +32,5 @@ export interface Config {
   testServers?: string[];
   emojis: Emojis;
   links?: Links;
+  colors?: Colors
 }

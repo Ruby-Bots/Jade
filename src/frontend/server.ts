@@ -1,21 +1,22 @@
 import express from "express";
+import { RouteHandler } from "./Routes";
+import cors from "cors";
 import { client } from "..";
-import { APIRouteHandler } from "./Routes";
-
 const app = express();
 
-const Main = async () => {
-  app.get("/", (req, res) => {
-    res.send({ msg: `Jade`, status: `Coming soon!`, code: 404 });
-  });
-  APIRouteHandler(app);
-  app.listen(process.env.PORT || 3000, () =>
+app.use(cors({ origin: `http://127.0.0.1:3000` }));
+app.set("json spaces", 1);
+app.set("view engine", "ejs");
+app.set("views", process.cwd() + "/src/frontend/views");
+app.use(express.static(process.cwd() + "/src/frontend/views"));
+
+const APIMain = async () => {
+  RouteHandler(app);
+  app.listen(8000, () =>
     client.logger.info(
-      `Dashboard is now online! URL: http://localhost:${
-        process.env.PORT || 3000
-      }`
+      `Dash is now online! URL: http://localhost`
     )
   );
 };
 
-export default Main;
+export default APIMain;
