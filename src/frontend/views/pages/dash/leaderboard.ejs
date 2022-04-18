@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/_pages/leaderboard.css" />
+    <link rel="stylesheet" href="/styles/_abstract/root.css" />
+    <link rel="shortcut icon" href="assets/Jade_logo.png" type="image/x-icon" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Jadebot.app</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-top">
+        <% if(guild.icon) { %> <img
+        src="https://cdn.discordapp.com/icons/<%=guild.id%>/<%=
+        guild.icon.replace("a_", "") %>.png?size=4096" alt="<%=guild.name%>'s
+        icon" /> <%} else {%>
+        <img
+          src="https://cdn.discordapp.com/attachments/957399182115745802/960588244003729469/Solid-Red.png"
+          alt="<%=guild.name%>'s icon"
+        />
+        <%}%>
+        <h1><%= guild.name %></h1>
+      </div>
+      <a href="/" class="btn"><span>Go back Home!</span></a>
+    </div>
+    <div class="grid">
+      <% users.forEach((user) => { %>
+      <div class="user">
+        <div class="top-half">
+          <h1 class="pos"><%= user.pos %></h1>
+          <% if(user.avatar) { %>
+          <img
+            src="<%= user.avatar %>"
+            alt="<%= user.tag %>'s
+        icon"
+          />
+          <%} else {%>
+          <img
+            src="https://cdn.discordapp.com/attachments/957399182115745802/960588244003729469/Solid-Red.png"
+            alt="<%= user.tag %>'s icon"
+          />
+          <%}%>
+          <h1 class="tag"><%= user.tag %></h1>
+        </div>
+        <div class="leveltag">
+          <h1 class="level"><%= user.level %></h1>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>

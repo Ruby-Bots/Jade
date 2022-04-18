@@ -8,9 +8,13 @@ import {
   WebhookClientOptions,
   Intents,
   IntentsString,
-  BitFieldResolvable
+  BitFieldResolvable,
 } from "discord.js";
-import { CommandTypes, ExtendedInteraction, RegisterCommandsOptions } from "../../typings/classTypes";
+import {
+  CommandTypes,
+  ExtendedInteraction,
+  RegisterCommandsOptions,
+} from "../../typings/classTypes";
 import { Config } from "./Config";
 import Logger from "../../utils/Logger";
 import glob from "glob";
@@ -29,7 +33,7 @@ export default class Jade extends Client {
   commands: Collection<string, CommandTypes> = new Collection();
   commandArray: Array<ApplicationCommandDataResolvable> = [];
   config: Config = {
-    color: "#52b788",
+    color: "#950035",
     colors: {
       gold: "#ffb94b",
       purple: "#a98aff",

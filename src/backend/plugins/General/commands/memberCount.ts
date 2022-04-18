@@ -7,9 +7,20 @@ export default new Command({
     category: "General",
     execute: async ({ ctx, client }) => {
         ctx.reply({
-            embeds: [new Embed({ 
-                author: { name: `Member Count`, icon_url: client.user.displayAvatarURL({ format: "png" }) },
-                description: `There are **${ctx.guild.memberCount}** members in this server. *( ${ctx.guild.members.cache.filter(f => f.user.bot).size} bots! )*`
-        })]})
+          ephemeral: true,
+          embeds: [
+            new Embed({
+              author: {
+                name: `Member Count`,
+                icon_url: client.user.displayAvatarURL({ format: "png" }),
+              },
+              description: `There are **${
+                ctx.guild.memberCount
+              }** members in this server. *( ${
+                ctx.guild.members.cache.filter((f) => f.user.bot).size
+              } bots! )*`,
+            }),
+          ],
+        });
     }
 })

@@ -41,7 +41,8 @@ export default new Command({
     const query = args.getString("query") || "sdafgasgsdgsfsdfsf";
     let res: InteractionReplyOptions;
     if (subcommand === "user") {
-      const data = (
+      try {
+        const data = (
         await axios.get(`https://api.github.com/users/${query.toLowerCase()}`)
       ).data;
       if (
@@ -50,6 +51,7 @@ export default new Command({
           : false
       ) {
         return ctx.reply({
+          ephemeral: true,
           embeds: [
             new Embed({
               description: `Could not find a user under the name of **${query}**`,
@@ -64,47 +66,58 @@ export default new Command({
       ).data;
       const createdDate = new Date(data.created_at).getTime();
       const lastUpdated = new Date(data.updated_at).getTime();
-      res = {
-        embeds: [
-          new Embed({
-            title: `"${data.login}" information`,
-            description: `>>> ${data.bio || "No user bio!"}`,
-            url: data.html_url,
-            thumbnail: { proxy_url: data.avatar_url },
-            fields: [
-              {
-                name: `Account Type`,
-                value: `${data.type}`,
-                inline: true,
-              },
-              {
-                name: `Created`,
-                value: `<t:${Math.floor(createdDate / 1000)}:d>`,
-                inline: true,
-              },
-              {
-                name: `Last Update`,
-                value: `<t:${Math.floor(lastUpdated / 1000)}:R>`,
-                inline: true,
-              },
-              {
-                name: `Pinned Repos`,
-                value: `${
-                  pins
-                    ? pins
-                        .slice(0, 5)
-                        .map(
-                          (pin) =>
-                            `\`⭐\` ${pin.stargazers_count} | **${pin.name}** - [\`${pin.full_name}\`](${pin.html_url})`
-                        )
-                        .join("\n")
-                    : "No pinned repositorys"
-                }`,
-              },
-            ],
-          }),
-        ],
-      };
+        res = {
+          ephemeral: true,
+          embeds: [
+            new Embed({
+              title: `"${data.login}" information`,
+              description: `>>> ${data.bio || "No user bio!"}`,
+              url: data.html_url,
+              thumbnail: { proxy_url: data.avatar_url },
+              fields: [
+                {
+                  name: `Account Type`,
+                  value: `${data.type}`,
+                  inline: true,
+                },
+                {
+                  name: `Created`,
+                  value: `<t:${Math.floor(createdDate / 1000)}:d>`,
+                  inline: true,
+                },
+                {
+                  name: `Last Update`,
+                  value: `<t:${Math.floor(lastUpdated / 1000)}:R>`,
+                  inline: true,
+                },
+                {
+                  name: `Pinned Repos`,
+                  value: `${
+                    pins
+                      ? pins
+                          .slice(0, 5)
+                          .map(
+                            (pin) =>
+                              `\`⭐\` ${pin.stargazers_count} | **${pin.name}** - [\`${pin.full_name}\`](${pin.html_url})`
+                          )
+                          .join("\n")
+                      : "No pinned repositorys"
+                  }`,
+                },
+              ],
+            }),
+          ],
+        };
+      } catch (err) {
+        return ctx.reply({
+          ephemeral: true,
+          embeds: [
+            new Embed({
+              description: `An error occured fetching information for **${query}**`,
+            }),
+          ],
+        });
+      }
     }
     if (subcommand === "repo") {
       const data = await (

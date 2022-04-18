@@ -17,7 +17,6 @@ export interface RegisterCommandsOptions {
   commands: ApplicationCommandDataResolvable[];
 }
 
-
 //? Commands - Slash
 
 export interface ExtendedInteraction extends CommandInteraction {

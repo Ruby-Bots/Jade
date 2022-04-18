@@ -7,88 +7,86 @@
     <link rel="stylesheet" href="/styles/_pages/home.css" />
     <link rel="stylesheet" href="/styles/_components/navbar.css" />
     <link rel="stylesheet" href="/styles/_abstract/root.css" />
-    <link rel="shortcut icon" href="assets/jade_logo.png" type="image/x-icon" />
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="assets/Jade_logo.png" type="image/x-icon" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Jadebot.app</title>
   </head>
   <body>
     <%- include("../components/navbar.ejs") %>
     <div class="titleBox">
       <div class="header">
-        <div class="header-top">
-          <img src="/assets/jade_logo.png" alt="jade logo" />
-        </div>
         <div class="header-bottom">
           <h1><span>Enchance</span><br />Your Discord Server</h1>
           <p>
-            Echance your discord server with jade! Starboards, moderation,
-            backups, all the information in the world, personalized api, and
-            much more with jadebot.app
+            Echance your discord server with Jade! Starboards, Suggestions, Leveling, all the information in the world and
+            much more with Jade.rubybots.co
           </p>
           <a href="/invite">Add the bot!</a>
         </div>
       </div>
     </div>
     <div class="lowerSection">
-        <h1 class="lowerSection__title"><%= userCount %> users are taking advantage of Jade's features!</h1>
-        <div class="features">
-            <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-star'></i>
-                    <h2>Starboard</h2>
-                </div>
-                <div class="about">
-                    <p>Pin your/your communitys favorite things inside of your own server! Just react to the message with a <i class='bx bxs-star star'></i> for it to be sent into your desinated channel!</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-bar-chart-square' ></i>
-                    <h2>Leveling</h2>
-                </div>
-                <div class="about">
-                    <p>Level up your server! All you too keep track of your server members activity, allowing you to reward them! Add your own custom level role requirements, multipliers and more!</p>
-                </div>
-            </div>
-             <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-backpack' ></i>
-                    <h2>Moderation</h2>
-                </div>
-                <div class="about">
-                    <p>Make sure your server is safe and secure with Jade! Warn, Ban, Kick, Keep track of previous cases and so much more all comes included with jade moderation!</p>
-                </div>
-            </div>
-             <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-hard-hat' ></i>
-                    <h2>Management</h2>
-                </div>
-                <div class="about">
-                    <p>Allow jade to take care of your server mangement. Manage your roles, channels and much more through jade's simple yet effective slash commands!</p>
-                </div>
-            </div>
-             <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-brain' ></i>
-                    <h2>Suggestions</h2>
-                </div>
-                <div class="about">
-                    <p>Allow taking in community feedback to be easier with jade! Allow members to suggest ideas etc, vote on them and finalise your own decision on them.</p>
-                </div>
-            </div>
-            <div class="feature">
-                <div class="title">
-                    <i class='bx bxs-virus-block' ></i>
-                    <h2>Join Gate</h2>
-                </div>
-                <div class="about">
-                    <p>Setup personal join gates for your server! Force new members to meet certain requirements other wise jade will take action! Easily manage these gates, aswell as changing the action!</p>
-                </div>
-            </div>
-             
+      <h1 class="lowerSection__title">
+        <%= userCount %> users are taking advantage of Jade's features!
+      </h1>
+      <div class="features">
+        <div class="feature">
+          <div class="title">
+            <i class="bx bxs-star"></i>
+            <h2>Starboard</h2>
+          </div>
+          <div class="about">
+            <p>
+              Pin your/your communitys favorite things inside of your own
+              server! Just react to the message with a
+              <i class="bx bxs-star star"></i> for it to be sent into your
+              desinated channel!
+            </p>
+          </div>
         </div>
-    
+        <div class="feature">
+          <div class="title">
+            <i class="bx bxs-bar-chart-square"></i>
+            <h2>Leveling</h2>
+          </div>
+          <div class="about">
+            <p>
+              Level up your server! All you too keep track of your server
+              members activity, allowing you to reward them! Add your own custom
+              level role requirements, multipliers and more!
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="title">
+            <i class="bx bxs-hard-hat"></i>
+            <h2>Management</h2>
+          </div>
+          <div class="about">
+            <p>
+              Allow Jade to take care of your server mangement. Manage your
+              roles, channels and much more through Jade's simple yet effective
+              slash commands!
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="title">
+            <i class="bx bxs-brain"></i>
+            <h2>Suggestions</h2>
+          </div>
+          <div class="about">
+            <p>
+              Allow taking in community feedback to be easier with Jade! Allow
+              members to suggest ideas etc, vote on them and finalise your own
+              decision on them.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

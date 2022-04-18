@@ -2,7 +2,7 @@
 
 import Suggestions from "../../../../schemas/Collections/Guilds/Suggestions";
 import { Command } from "../../../structures/Command";
-import { AcceptSuggestion, AwaitSuggestion, DenySuggestion, UpdateChannel, UpdateMesasges } from "../functions";
+import { AcceptSuggestion, AwaitSuggestion, DenySuggestion, UpdateChannel, UpdateMessages } from "../functions";
 
 export default new Command({
   name: `suggestion`,
@@ -90,7 +90,7 @@ export default new Command({
         UpdateChannel(ctx, args)
         break;
       case "messages":
-        UpdateMesasges(ctx, args)
+        UpdateMessages(ctx, args)
         break;
     }
   },

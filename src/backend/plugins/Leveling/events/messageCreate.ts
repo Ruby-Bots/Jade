@@ -27,19 +27,19 @@ export default new Event(`messageCreate`, async (message) => {
     userId: message.author.id,
     guildId: message.guild.id,
   });
-  if (!userLevels)
+  console.log(userLevels)
+  if (!userLevels) {
     await Levels.create({
       userId: message.author.id,
       guildId: message.guild.id,
     });
+  }
   userLevels = await Levels.findOne({
     userId: message.author.id,
     guildId: message.guild.id,
   });
-
   messageCount = messageCount + 1;
-  if (!LevelingData || LevelingData.toggle === false || messageCount < 5)
-    return;
+  if (!LevelingData || LevelingData.toggle === false || messageCount < 5) return;
   const randomXp = Math.floor(Math.random() * 25) + 25;
   await Levels.findOneAndUpdate(
     { userId: message.author.id, guildId: message.guild.id },

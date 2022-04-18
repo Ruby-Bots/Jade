@@ -1,7 +1,7 @@
 import Leveling from "../../../../schemas/Collections/Guilds/Leveling";
 import { Command } from "../../../structures/Command";
 import { Embed } from "../../../structures/Embed";
-import { AddAutoRole, RemoveAutoRole } from "../Functions";
+import { AddAutoRole, RemoveAutoRole, UpdateMessage } from "../Functions";
 
 export default new Command({
   name: `leveling`,
@@ -54,6 +54,11 @@ export default new Command({
       description: `📊 | Toggle on/off the leveling system`,
       options: [{ type: "BOOLEAN", name: "value", description: `📊 |  the value`, required: true}]
     },
+    {
+      type: "SUB_COMMAND",
+      name: "message",
+      description: `📊 | Update the level up message!`,
+    },
   ],
   execute: async ({ ctx, args, client }) => {
     const subCommand = args.getSubcommand();
@@ -64,12 +69,28 @@ export default new Command({
       case "toggle":
         const value = args.getBoolean("value");
         if (previousData.toggle === value) {
-          return ctx.reply({ embeds: [new Embed({ description: `Leveling has already been set to \`${value}\``})]})
+          return ctx.reply({
+            ephemeral: true,
+            embeds: [
+              new Embed({
+                description: `Leveling has already been set to \`${value}\``,
+              }),
+            ],
+          });
         }
         await Leveling.findOneAndUpdate({ guildId: ctx.guild.id }, {
           toggle: value
         })
-        return ctx.reply({ embeds: [new Embed({ description: `Leveling has now been **${ value === true ? "enabled" : "disabled"}**!`})]})
+        return ctx.reply({
+          ephemeral: true,
+          embeds: [
+            new Embed({
+              description: `Leveling has now been **${
+                value === true ? "enabled" : "disabled"
+              }**!`,
+            }),
+          ],
+        });
         break;
       case "add":
         AddAutoRole(ctx, args);
@@ -77,8 +98,12 @@ export default new Command({
       case "remove":
         RemoveAutoRole(ctx, args);
         break;
+      case "message":
+        UpdateMessage(ctx, args)
+        break;
       case "list":
         ctx.reply({
+          ephemeral: true,
           embeds: [
             new Embed({
               author: {

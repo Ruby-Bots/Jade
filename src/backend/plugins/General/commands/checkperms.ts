@@ -19,7 +19,7 @@ const defaultPermissions: PermissionResolvable[] = [
   "MANAGE_ROLES",
   "MANAGE_WEBHOOKS",
   "CREATE_INSTANT_INVITE",
-  "MANAGE_GUILD", 
+  "MANAGE_GUILD",
   "SEND_MESSAGES_IN_THREADS",
 ];
 export default new Command({
@@ -46,9 +46,13 @@ export default new Command({
       }
     });
     ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
-          author: { name: `Jade's Permissions`, icon_url: client.user.displayAvatarURL({ format: "png" })},
+          author: {
+            name: `Jade's Permissions`,
+            icon_url: client.user.displayAvatarURL({ format: "png" }),
+          },
           description: `These permissions are required for some features to work, if Jade is missing any then they may not work as intended.\n\n>>> ${permissions.join(
             "\n"
           )}`,

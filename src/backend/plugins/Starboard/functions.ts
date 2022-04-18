@@ -15,14 +15,14 @@ export const Guide = async (
   client: Jade,
   args: CommandInteractionOptionResolver
 ) => {
-    ctx.reply({
-      embeds: [
-        new Embed({
-          title: `Starboard Guide!`,
-          description: `> Here is were you can view all of the starboard commands!\n> ( These can also be viewed on the help menu! \`/help\`) \n\n**Commands:**\n>>> \`/starboard guide:\` This embed!\n\`/starboard channel:\` Channel the starboard channel!\n\`/starboard selfstar:\` Toggle if the starboard will trigger on self star\n\`/starboard minimum:\` Change the minimum amount of required stars!\n\`/starboard config:\` View the current saved data for this guild/server!`,
-        }),
-      ],
-    });
+  ctx.reply({
+    embeds: [
+      new Embed({
+        title: `Starboard Guide!`,
+        description: `> Here is were you can view all of the starboard commands!\n> ( These can also be viewed on the help menu! \`/help\`) \n\n**Commands:**\n>>> \`/starboard guide:\` This embed!\n\`/starboard channel:\` Channel the starboard channel!\n\`/starboard selfstar:\` Toggle if the starboard will trigger on self star\n\`/starboard minimum:\` Change the minimum amount of required stars!\n\`/starboard config:\` View the current saved data for this guild/server!`,
+      }),
+    ],
+  });
 };
 
 export const UpdateChannel = async (
@@ -57,6 +57,7 @@ export const UpdateChannel = async (
     );
   }
   ctx.reply({
+    ephemeral: true,
     components: dropdowns,
     embeds: [
       new Embed({
@@ -88,12 +89,16 @@ export const UpdateChannel = async (
         {
           channelId: channelId,
         }
-        );
-        const channel = ctx.guild.channels.cache.find(f => f.id === channelId)
-        ctx.editReply({ components: [], embeds: [new Embed({ description: `>>> Starboard channel has been updated to **${channel.name}** *(${channel.id})*`})]})
-        setTimeout(() => {
-            ctx.deleteReply().catch(() => {});
-        }, 5000);
+      );
+      const channel = ctx.guild.channels.cache.find((f) => f.id === channelId);
+      ctx.editReply({
+        components: [],
+        embeds: [
+          new Embed({
+            description: `>>> Starboard channel has been updated to **${channel.name}** *(${channel.id})*`,
+          }),
+        ],
+      });
     }
   });
 };

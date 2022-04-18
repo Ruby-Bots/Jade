@@ -5,19 +5,19 @@ export default new Command({
     description: `🏡 | Check the bot's response time.`,
     category: "General",
     execute: async ({ ctx, client }) => {
-        ctx.reply({ content: `Pinging...` }).then((int) => {
-            ctx.editReply({
-                content: `\`🏓\` Pong!`,
-              embeds: [
-                new Embed({
-                  description: `>>> WS: \`${client.ws.ping}\`ms\n My Ping: \`${(
-                    Date.now() - ctx.createdTimestamp
-                  )
-                    .toString()
-                    .replace(/-/g, "")}\`ms`,
-                }),
-              ],
-            });
-        })
+        ctx.reply({ ephemeral: true, content: `Pinging...` }).then((int) => {
+          ctx.editReply({
+            content: `\`🏓\` Pong!`,
+            embeds: [
+              new Embed({
+                description: `>>> WS: \`${client.ws.ping}\`ms\n My Ping: \`${(
+                  Date.now() - ctx.createdTimestamp
+                )
+                  .toString()
+                  .replace(/-/g, "")}\`ms`,
+              }),
+            ],
+          });
+        });
     }
 })

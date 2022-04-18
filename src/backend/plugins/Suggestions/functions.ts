@@ -43,6 +43,7 @@ export const AcceptSuggestion = async (
   const reason = args.getString("reason") || "No reason supplied!";
   if (!suggestionConfig.channelId) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `You must setup suggestions first before being able to use this command!`,
@@ -56,6 +57,7 @@ export const AcceptSuggestion = async (
   ) as TextChannel;
   if (!channel) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears you suggestions channel has been deleted! Please set a new one to begin using these commands again.`,
@@ -69,6 +71,7 @@ export const AcceptSuggestion = async (
   const embed = message?.embeds[0];
   if (!embed) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears this is not a suggestion message!`,
@@ -78,6 +81,7 @@ export const AcceptSuggestion = async (
   }
   if (embed.fields[0]?.name.includes("Accepted")) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears that this suggestion has already been accepted!`,
@@ -104,6 +108,7 @@ export const AcceptSuggestion = async (
     ],
   });
   ctx.reply({
+    ephemeral: true,
     embeds: [
       new Embed({
         description: `Suggestion (\`${messageId}\`) has successfully been accepted`,
@@ -153,6 +158,7 @@ export const DenySuggestion = async (
   const reason = args.getString("reason") || "No reason supplied!";
   if (!suggestionConfig.channelId) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `You must setup suggestions first before being able to use this command!`,
@@ -166,6 +172,7 @@ export const DenySuggestion = async (
   ) as TextChannel;
   if (!channel) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears you suggestions channel has been deleted! Please set a new one to begin using these commands again.`,
@@ -179,6 +186,7 @@ export const DenySuggestion = async (
   const embed = message?.embeds[0];
   if (!embed) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears this is not a suggestion message!`,
@@ -188,6 +196,7 @@ export const DenySuggestion = async (
   }
   if (embed.fields[0]?.name.includes("Denied")) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears that this suggestion has already been denied!`,
@@ -214,6 +223,7 @@ export const DenySuggestion = async (
     ],
   });
   ctx.reply({
+    ephemeral: true,
     embeds: [
       new Embed({
         description: `Suggestion (\`${messageId}\`) has successfully been denied`,
@@ -264,6 +274,7 @@ export const AwaitSuggestion = async (
   const messageId = args.getString("messageid");
   if (!suggestionConfig.channelId) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `You must setup suggestions first before being able to use this command!`,
@@ -277,6 +288,7 @@ export const AwaitSuggestion = async (
   ) as TextChannel;
   if (!channel) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears you suggestions channel has been deleted! Please set a new one to begin using these commands again.`,
@@ -290,6 +302,7 @@ export const AwaitSuggestion = async (
   const embed = message?.embeds[0];
   if (!embed) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears this is not a suggestion message!`,
@@ -302,6 +315,7 @@ export const AwaitSuggestion = async (
     !embed.fields[0]?.name.includes("Accepted")
   ) {
     return ctx.reply({
+      ephemeral: true,
       embeds: [
         new Embed({
           description: `It appears this suggestion is already in its "await" stage!`,
@@ -320,6 +334,7 @@ export const AwaitSuggestion = async (
     ],
   });
   ctx.reply({
+    ephemeral: true,
     embeds: [
       new Embed({
         description: `Suggestion (\`${messageId}\`) has successfully been put back into the "await" stage!`,
@@ -359,6 +374,7 @@ export const UpdateChannel = async (
     );
   }
   ctx.reply({
+    ephemeral: true,
     components: dropdowns,
     embeds: [
       new Embed({
@@ -374,6 +390,7 @@ export const UpdateChannel = async (
   collector.on("collect", (i) => {
     if (i.user.id !== ctx.user.id || i.user.bot)
       return i.reply({
+        ephemeral: true,
         embeds: [
           new Embed({
             description: `This prompt can only be ran by **${ctx.user.tag}**`,
@@ -400,18 +417,16 @@ export const UpdateChannel = async (
           }),
         ],
       });
-      setTimeout(() => {
-        ctx.deleteReply().catch(() => {});
-      }, 5000);
     }
   });
 };
 
-export const UpdateMesasges = async (
+export const UpdateMessages = async (
   ctx: ExtendedInteraction,
   args: CommandInteractionOptionResolver
 ) => {
   ctx.reply({
+    ephemeral: true,
     components: [
       new MessageActionRow().addComponents([
         new MessageButton()
@@ -439,6 +454,7 @@ export const UpdateMesasges = async (
     if (i.customId === "edit_s_accept_message") {
       const acceptMessageCollector = i.channel.createMessageCollector({ time: 35000 });
       i.reply({
+        ephemeral: true,
         embeds: [
           new Embed({
             description: `Please type the message you would like to use when a suggestion gets accepted!\n\n>>> **{{reason}}** - The accept reason!\n**{{id}}** - The suggestion id\n**{{user#tag}}** - The suggesters tag\n**{{user#id}}** - The suggesters id\n**{{user#mention}}** - Mention the suggester!\n**{{user#username}}** - The suggesters username`,
@@ -467,9 +483,7 @@ export const UpdateMesasges = async (
               }),
             ],
           });
-          setTimeout(() => {
-            i.deleteReply().catch(() => {});
-          }, 5000);
+
         } else {
           i.editReply({
             embeds: [
@@ -478,9 +492,7 @@ export const UpdateMesasges = async (
               }),
             ],
           });
-          setTimeout(() => {
-            i.deleteReply().catch(() => {});
-          }, 5000);
+
         }
       })
     }
@@ -489,6 +501,7 @@ export const UpdateMesasges = async (
         time: 35000,
       });
       i.reply({
+        ephemeral: true,
         embeds: [
           new Embed({
             description: `Please type the message you would like to use when a suggestion gets denied!\n\n>>> **{{reason}}** - The accept reason!\n**{{id}}** - The suggestion id\n**{{user#tag}}** - The suggesters tag\n**{{user#id}}** - The suggesters id\n**{{user#mention}}** - Mention the suggester!\n**{{user#username}}** - The suggesters username`,
@@ -517,14 +530,10 @@ export const UpdateMesasges = async (
               }),
             ],
           });
-          setTimeout(() => {
-            i.deleteReply().catch(() => {});
-          }, 5000);
+
         } else {
           i.editReply({ embeds: [new Embed({ description: `It appears you have ran out of time, You only have **35** seconds!`})]})
-          setTimeout(() => {
-            i.deleteReply().catch(() => {});
-          }, 5000);
+  
         }
       });
     }

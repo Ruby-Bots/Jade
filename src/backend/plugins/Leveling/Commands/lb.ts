@@ -8,9 +8,20 @@ export default new Command({
   category: "Leveling",
   execute: async ({ ctx }) => {
     ctx.reply({
-      components: [new MessageActionRow().addComponents([new MessageButton().setLabel("Leaderboard").setURL(`${process.env.URL}/leaderboard/${ctx.guild.id}`).setStyle("LINK")])],
-      embeds: [new Embed({
-        description: `You can view **${ctx.guild.name}**'s leaderboard using the link below!`
-      })]})
+      ephemeral: true,
+      components: [
+        new MessageActionRow().addComponents([
+          new MessageButton()
+            .setLabel("Leaderboard")
+            .setURL(`${process.env.URL}/leaderboard/${ctx.guild.id}`)
+            .setStyle("LINK"),
+        ]),
+      ],
+      embeds: [
+        new Embed({
+          description: `You can view **${ctx.guild.name}**'s leaderboard using the link below!`,
+        }),
+      ],
+    });
   },
 });

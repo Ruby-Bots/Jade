@@ -14,10 +14,14 @@ export default new Command({
           return ctx.reply({ embeds: [new Embed({ description: `>>> Can not find a recent error under the id of \`${string}\``})]})
       }
       client.sendCommandError(ctx, false, `>>> **ID**: \`${string}\`\n**Other Info**:\n\`\`\`\n${info}\`\`\``, false, { token: process.env.REPORT_WEBHOOK_TOKEN, id: process.env.REPORT_WEBHOOK_ID}, "New Report!")
-      ctx.channel.send({
-          embeds: [new Embed({
-              description: `Your report (\`${string}\`) has been submitted.`
-        })]})
+      ctx.reply({
+        ephemeral: true,
+        embeds: [
+          new Embed({
+            description: `Your report (\`${string}\`) has been submitted.`,
+          }),
+        ],
+      });
   
     },
 });

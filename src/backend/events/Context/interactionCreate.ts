@@ -5,10 +5,8 @@ import {
 import { client } from "../../..";
 import cooldowns from "../../modules/cooldowns";
 import { ExtendedInteraction } from "../../../typings/classTypes";
-import Jade from "../../structures/Client";
 import { Event } from "../../structures/Event";
 import { Embed } from "../../structures/Embed";
-import e from "express";
 
 export default new Event(`interactionCreate`, async (interaction) => {
   if (interaction.isCommand()) {
